@@ -1,4 +1,4 @@
-# Wireguard-Config-Generator
+# wgconfig
 A simple bash script to output wireguard configurations with public and private key.
 
 ![wgconfig](wgconfig.jpg)
@@ -20,9 +20,9 @@ Endpoint = :
 ```
 ## Installation and usage
 
-Clone the repo or copy the script.  
-Make the script executable `chmod +x wgconfig`.  
-Place it somewhere in your path `~/bin` `~/.local/bin` or `/usr/local/bin`.  
+Clone the repo or copy the script.
+Make the script executable `chmod +x wgconfig`.
+Place it somewhere in your path `~/bin` `~/.local/bin` or `/usr/local/bin`.
 
 There are no command line flags or options, just execute the script and follow the prompts.
 
@@ -41,5 +41,5 @@ For additional operating systems: [Wireguard Installation](https://www.wireguard
 
 ## Further Information
 
-- [WireGuard](https://www.wireguard.com/)  
+- [WireGuard](https://www.wireguard.com/)
 - [Unofficial WireGuard Documentation](https://github.com/pirate/wireguard-docs)
