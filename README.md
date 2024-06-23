@@ -1,23 +1,39 @@
 # wgconfig
 A simple bash script to output wireguard configurations with public and private key.
 
-![wgconfig](wgconfig.jpg)
-
-cat wireguard.conf:
-
 ```bash
+[vpnuser@mypc]~$ wgconfig
+
+Enter values for any or all fields or none to generate keypair only
+
+Filename (example client01) = client02
+Address (example: 10.0.0.2/30) = 10.0.0.3/24
+ListenPort (return for dynamic endpoint) =
+DNS servers separated by comma (return for none) = 9.9.9.9
+PresharedKey (return for none) =
+Remote peer PublicKey = oqDuysTcgUDrFrUMZI75CXEzgg4/d0uTaOFbvr6QzjM=
+AllowedIPs (separated by comma, 0.0.0.0/0 for default) = 0.0.0.0/0
+Endpoint (hostname or IP address) = vpn.vpn.org
+Endpoint listenport = 51820
+
+### configuration saved as client02.conf
+
+[vpnuser@mypc]~$ cat client02.conf
+
 [Interface]
-PrivateKey = 2G7RWEI9AkU/jsydtRyf2OQKLurUci23XETa3+hFxE0=
-# Publickey = XUgAaEiZNCLqOEfcPikeX2dokZwTjuNk1pnb+OgB1DQ=
-Address =
+PrivateKey = iN92rSS26TJqOfXsUmWOoRxYV2NgzKauu81Z0DsffGI=
+# Publickey = NIQUfUiIbA/1Daw/SELmGoSHHBS+iPYTrcQ255ipS0U=
+Address = 10.0.0.3/24
+DNS = 9.9.9.9
 # MTU = 1420
 
 [Peer]
-PublicKey =
-AllowedIPs =
-Endpoint = :
+PublicKey = oqDuysTcgUDrFrUMZI75CXEzgg4/d0uTaOFbvr6QzjM=
+AllowedIPs = 0.0.0.0/0
+Endpoint = vpn.vpn.org:51820
 # PersistentKeepalive = 25
 ```
+
 ## Installation and usage
 
 Clone the repo or copy the script.<br>
