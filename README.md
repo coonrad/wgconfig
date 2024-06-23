@@ -1,7 +1,7 @@
 # wgconfig
 A simple bash script to output wireguard configurations with public and private key.
 
-```bash
+```markdown
 [vpnuser@mypc]~$ wgconfig
 
 Enter values for any or all fields or none to generate keypair only
