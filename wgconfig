@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+umask 077
+
+privatekey=$(wg genkey)
+publickey=$(echo "$privatekey" | wg pubkey)
+
+echo
+echo Enter values for any or all fields or none to generate keypair only
+echo
+
+echo -n "Filename (example client01) = "
+read -r filename
+echo -n "Address (example: 10.0.0.2/30) = "
+read -r address
+echo -n "ListenPort (return for dynamic endpoint) = "
+read -r listenport
+echo -n "DNS servers separated by comma (return for none) = "
+read -r dns
+echo -n "PresharedKey (return for none) = "
+read -r prekey
+echo -n "Remote peer PublicKey = "
+read -r pubkey
+echo -n "AllowedIPs (separated by comma, 0.0.0.0/0 for default) = "
+read -r allowedips
+echo -n "Endpoint (hostname or IP address) = "
+read -r endpoint
+echo -n "Endpoint listenport = "
+read -r endport
+
+if [ -z "$filename" ]; then filename=wireguard; fi
+if [ -f "$filename.conf" ]; then
+    echo
+    echo "output file $filename.conf exists, exiting."
+    echo
+    exit 1
+fi
+
+{
+    printf "[Interface]\n"
+    printf "PrivateKey = %s\n" "$privatekey"
+    printf "# Publickey = %s\n" "$publickey"
+    printf "Address = %s\n" "$address"
+    if [ -n "$listenport" ]; then printf "ListenPort = %s\n" "$listenport"; fi
+    if [ -n "$dns" ]; then printf "DNS = %s\n" "$dns"; fi
+    printf "# MTU = 1420\n\n"
+    printf "[Peer]\n"
+    printf "PublicKey = %s\n" "$pubkey"
+    if [ -n "$prekey" ]; then printf "PresharedKey = %s\n" "$prekey"; fi
+    printf "AllowedIPs = %s\n" "$allowedips"
+    printf "Endpoint = %s:%s\n" "$endpoint" "$endport"
+    printf "# PersistentKeepalive = 25\n"
+
+} >>"$filename".conf
+
+echo
+echo "### configuration saved as $filename.conf"
+echo
