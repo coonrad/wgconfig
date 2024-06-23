@@ -20,9 +20,9 @@ Endpoint = :
 ```
 ## Installation and usage
 
-Clone the repo or copy the script.
-Make the script executable `chmod +x wgconfig`.
-Place it somewhere in your path `~/bin` `~/.local/bin` or `/usr/local/bin`.
+Clone the repo or copy the script.<br>
+Make the script executable `chmod +x wgconfig`.<br>
+Place it somewhere in your path `~/bin` `~/.local/bin` or `/usr/local/bin`.<br>
 
 There are no command line flags or options, just execute the script and follow the prompts.
 
