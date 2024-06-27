@@ -20,6 +20,7 @@ Endpoint listenport = 51820
 
 [vpnuser@mypc]~$ cat client02.conf
 
+# Name = client02
 [Interface]
 PrivateKey = iN92rSS26TJqOfXsUmWOoRxYV2NgzKauu81Z0DsffGI=
 # Publickey = NIQUfUiIbA/1Daw/SELmGoSHHBS+iPYTrcQ255ipS0U=
@@ -30,7 +31,7 @@ DNS = 9.9.9.9
 [Peer]
 PublicKey = oqDuysTcgUDrFrUMZI75CXEzgg4/d0uTaOFbvr6QzjM=
 AllowedIPs = 0.0.0.0/0
-Endpoint = vpn.vpn.org:51820
+Endpoint = vpn.vpn.dev:51820
 # PersistentKeepalive = 25
 ```
 
