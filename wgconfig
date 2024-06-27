@@ -8,7 +8,7 @@ publickey=$(echo "$privatekey" | wg pubkey)
 fileconfig() {
     if [ -z "$filename" ]; then filename=wireguard; fi
     if [ -f "$filename.conf" ]; then
-        echo "wgconfig: output file $filename.conf exists, exiting."
+        echo "wgconfig: output file $filename.conf exists, exit."
         exit 1
     fi
 }
@@ -27,7 +27,7 @@ read -r address
 echo -n "ListenPort (return for dynamic endpoint) = "
 read -r listenport
 
-echo -n "DNS servers separated by comma (return for none) = "
+echo -n "DNS server(s) separated by comma (return for none) = "
 read -r dns
 
 echo -n "PresharedKey (return for none) = "
@@ -46,22 +46,23 @@ echo -n "Endpoint listenport = "
 read -r endport
 
 {
+    printf "# Name = %s\n" "$filename"
     printf "[Interface]\n"
     printf "PrivateKey = %s\n" "$privatekey"
     printf "# Publickey = %s\n" "$publickey"
     printf "Address = %s\n" "$address"
     if [ -n "$listenport" ]; then printf "ListenPort = %s\n" "$listenport"; fi
     if [ -n "$dns" ]; then printf "DNS = %s\n" "$dns"; fi
-    printf "# MTU = 1420\n\n"
+    printf "#MTU = 1420\n\n"
     printf "[Peer]\n"
     printf "PublicKey = %s\n" "$pubkey"
     if [ -n "$prekey" ]; then printf "PresharedKey = %s\n" "$prekey"; fi
     printf "AllowedIPs = %s\n" "$allowedips"
     printf "Endpoint = %s:%s\n" "$endpoint" "$endport"
-    printf "# PersistentKeepalive = 25\n"
+    printf "#PersistentKeepalive = 25\n"
 
 } >>"$filename".conf
 
 echo
-echo "### configuration saved as $filename.conf"
+echo "wgconfig: configuration saved as $filename.conf"
 echo
