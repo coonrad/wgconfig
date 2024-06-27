@@ -67,7 +67,7 @@ AllowedIPs =
 
 # IP or hostname followed by colon and port number
 # Don't set if remote peers have dynamic addresses
-Endpoint = :
+# Endpoint =
 
 # Keepalive interval between 1 and 65535
 # Useful for keeping NAT or stateful firewall connections active
