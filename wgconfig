@@ -36,13 +36,13 @@ read -r prekey
 echo -n "Remote peer PublicKey = "
 read -r pubkey
 
-echo -n "AllowedIPs (separated by comma, 0.0.0.0/0 for default) = "
+echo -n "AllowedIPs separated by comma (0.0.0.0/0 for default) = "
 read -r allowedips
 
-echo -n "Endpoint (hostname or IP address) = "
+echo -n "Endpoint hostname or IP address (return for none) = "
 read -r endpoint
 
-echo -n "Endpoint listenport = "
+echo -n "Endpoint listenport (return for none) = "
 read -r endport
 
 {
@@ -91,7 +91,11 @@ read -r endport
     printf "AllowedIPs = %s\n\n" "$allowedips"
     printf "# IP or hostname followed by colon and port number\n"
     printf "# Don't set if remote peers have dynamic addresses\n"
-    printf "Endpoint = %s:%s\n\n" "$endpoint" "$endport"
+    if [ -n "$endpoint" ]; then
+        printf "Endpoint = %s:%s\n\n" "$endpoint" "$endport"
+    else
+        printf "# Endpoint =\n\n"
+    fi
     printf "# Keepalive interval between 1 and 65535\n"
     printf "# Useful for keeping NAT or stateful firewall connections active\n"
     printf "# PersistentKeepalive = 25\n\n"
